@@ -53,3 +53,37 @@ print(data.to_string())
 
 
 data.to_csv('new_movies_data.csv')
+
+
+#  Group by concept is used in it 
+
+g = data.groupby('industry')
+for key,data in g:
+    print("Key",key)
+    print("Data",data.to_string())
+print(g.size())
+
+
+
+print(g.get_group('Bollywood'))
+
+
+#  Grouping the values by the custom method 
+
+
+def grouper(data,idx,col):
+    value = data[col].loc[idx]
+    if 1 <= value <=3.9:
+        return 'poor'
+    elif 4<= value <= 7.9:
+        return 'average'
+    elif 8<= value <= 10:
+        return 'good'
+    else:
+        return 'others'
+        
+g = data.groupby(lambda idx: grouper(data,idx,'imdb_rating'))
+for key,data in g:
+    print('key',key)
+    print('data',data.to_string())
+    
