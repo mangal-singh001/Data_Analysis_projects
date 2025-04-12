@@ -19,8 +19,8 @@ data.to_csv('final_movie_data.csv',index=False)
 
 #  Gives the all the Hollywood movie 
 
-data['industry'] = 'Hollywood'
-print(data.to_string())
+print(data[data['industry'] == 'Hollywood'].to_string())
+
 
 # Filter the movies after the release year 2010
 
